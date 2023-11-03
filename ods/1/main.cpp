@@ -1,11 +1,31 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <stack>
+
+void ex_1() {
+	std::ifstream inf{ "./sample_data.txt" };
+	
+	if (!inf) {
+		std::cerr << "Could not open file";
+	}
+
+	std::stack<std::string> s{};
+
+	while (inf) {
+		std::string line{};
+		std::getline(inf, line);
+		s.push(line);
+	}
+
+	while (!s.empty()) {
+		std::cout << s.top() + "\n";
+		s.pop();
+	}
+}
 
 int main() {
-	std::cout << "please input two integers, separated by a space" << "\n";
-	int x{};
-	int y{};
-	std::cin >> x >> y;
-	int ans{x * y};
-	std::cout << "answer is: " << ans << " \n";
+	ex_1();
 	return 0;
 }
+
